@@ -1,6 +1,7 @@
 package org.jazzteam.oop.model.factory;
 
 import org.jazzteam.oop.model.Office;
+import org.jazzteam.oop.model.Programmer;
 import org.jazzteam.oop.model.Worker;
 
 public class Factory {
@@ -12,5 +13,11 @@ public class Factory {
         Worker worker = new Worker();
         worker.setOperability(0);
         return worker;
+    }
+
+    public static Programmer createNewProgrammer() {
+        Programmer programmer = new Programmer();
+        programmer.setOperability(1);
+        return programmer;
     }
 }

@@ -1,6 +1,7 @@
 package org.jazzteam.oop.model.test;
 
 import org.jazzteam.oop.model.Office;
+import org.jazzteam.oop.model.Programmer;
 import org.jazzteam.oop.model.Worker;
 import org.jazzteam.oop.model.factory.Factory;
 import org.testng.Assert;
@@ -11,11 +12,13 @@ public class WorkerTest extends Assert {
 
     private Office office;
     private Worker worker;
+    private Programmer programmer;
 
     @BeforeMethod
     public void precondition() {
         office = Factory.createNewOffice();
         worker = Factory.createNewWorker();
+        programmer = Factory.createNewProgrammer();
     }
 
     @Test
@@ -50,5 +53,16 @@ public class WorkerTest extends Assert {
         int initialOperability = worker.getOperability();
         worker.drinkCoffee();
         assertTrue(worker.getOperability() > initialOperability);
+    }
+
+    @Test
+    public void programmerCreatedProgramTest() {
+        assertNotNull(programmer.createProgram());
+    }
+
+    @Test(expectedExceptions = IllegalStateException.class)
+    public void programmerTiredAndCreatedProgram() {
+        programmer.setOperability(-1);
+        programmer.createProgram();
     }
 }
