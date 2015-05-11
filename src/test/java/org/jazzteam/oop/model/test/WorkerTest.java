@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class WorkerTest {
+public class WorkerTest extends Assert {
 
     private Office defaultOffice;
     private Worker defaultWorker;
@@ -23,7 +23,7 @@ public class WorkerTest {
         int initialWorkersCount = defaultOffice.getWorkers().size();
         defaultWorker.goToOffice(defaultOffice);
 
-        Assert.assertEquals(defaultOffice.getWorkers().size(), initialWorkersCount + 1);
+        assertEquals(defaultOffice.getWorkers().size(), initialWorkersCount + 1);
     }
 
     @Test(expectedExceptions = IllegalStateException.class)
@@ -37,7 +37,7 @@ public class WorkerTest {
         defaultWorker.goToOffice(defaultOffice);
         defaultWorker.leaveFromOffice();
 
-        Assert.assertTrue(!defaultOffice.getWorkers().contains(defaultWorker));
+        assertTrue(!defaultOffice.getWorkers().contains(defaultWorker));
     }
 
     @Test(expectedExceptions = IllegalStateException.class)
