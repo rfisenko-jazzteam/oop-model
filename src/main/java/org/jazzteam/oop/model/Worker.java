@@ -6,6 +6,14 @@ public class Worker extends Human {
     private int cash;
     private int operability;
 
+    public void goToOffice(Office office) {
+        if (!office.getWorkers().contains(this)) {
+            office.getWorkers().add(this);
+        } else {
+            throw new IllegalStateException(String.format("Worker already in office! Name: '%s'", this.getName()));
+        }
+    }
+
     public void drinkCoffe() {
         operability++;
     }

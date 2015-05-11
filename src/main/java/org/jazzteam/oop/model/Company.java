@@ -1,24 +1,34 @@
 package org.jazzteam.oop.model;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Company {
 
     private static Company instance = new Company();
 
-    private List<Worker> workers = new LinkedList<Worker>();
+    private Set<Worker> workers = new LinkedHashSet<Worker>();
 
-
-    public List<Worker> getWorkers() {
-        return workers;
-    }
+    private Office office;
 
     private Company() {
+        office = new Office();
     }
 
     public static synchronized Company getInstance() {
         return instance;
+    }
+
+    public Office getOffice() {
+        return office;
+    }
+
+    public void setOffice(Office office) {
+        this.office = office;
+    }
+
+    public Set<Worker> getWorkers() {
+        return workers;
     }
 
 }
