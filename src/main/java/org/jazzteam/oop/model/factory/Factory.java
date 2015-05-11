@@ -9,6 +9,8 @@ public class Factory {
     }
 
     public static Worker createNewWorker() {
-        return new Worker();
+        Worker worker = new Worker();
+        worker.setOperability(0);
+        return worker;
     }
 }

@@ -5,7 +5,7 @@ public class Programmer extends Worker implements IProgrammer {
     private int minimumOperabilityForCreatingProgram = 0;
 
     public boolean createProgram() {
-        return this.getOperability() > minimumOperabilityForCreatingProgram;
+        return this.getOperability() >= minimumOperabilityForCreatingProgram;
     }
 
     public void setMinimumOperabilityForCreatingProgram(int minimumOperabilityForCreatingProgram) {

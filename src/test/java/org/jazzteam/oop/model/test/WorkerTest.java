@@ -9,40 +9,46 @@ import org.testng.annotations.Test;
 
 public class WorkerTest extends Assert {
 
-    private Office defaultOffice;
-    private Worker defaultWorker;
+    private Office office;
+    private Worker worker;
 
     @BeforeMethod
     public void precondition() {
-        defaultOffice = Factory.createNewOffice();
-        defaultWorker = Factory.createNewWorker();
+        office = Factory.createNewOffice();
+        worker = Factory.createNewWorker();
     }
 
     @Test
     public void goWorkerToOfficeTest() {
-        int initialWorkersCount = defaultOffice.getWorkers().size();
-        defaultWorker.goToOffice(defaultOffice);
+        int initialWorkersCount = office.getWorkers().size();
+        worker.goToOffice(office);
 
-        assertEquals(defaultOffice.getWorkers().size(), initialWorkersCount + 1);
+        assertEquals(office.getWorkers().size(), initialWorkersCount + 1);
     }
 
     @Test(expectedExceptions = IllegalStateException.class)
     public void goWorkerToOfficeWithAlreadyExistingTest() {
-        defaultWorker.goToOffice(defaultOffice);
-        defaultWorker.goToOffice(defaultOffice);
+        worker.goToOffice(office);
+        worker.goToOffice(office);
     }
 
     @Test(dependsOnMethods = "goWorkerToOfficeTest")
     public void workerLeaveFromOfficeTest() {
-        defaultWorker.goToOffice(defaultOffice);
-        defaultWorker.leaveFromOffice();
+        worker.goToOffice(office);
+        worker.leaveFromOffice();
 
-        assertTrue(!defaultOffice.getWorkers().contains(defaultWorker));
+        assertTrue(!office.getWorkers().contains(worker));
     }
 
     @Test(expectedExceptions = IllegalStateException.class)
     public void workerLeaveFromOfficeWithAlreadyLeavingTest() {
-        defaultWorker.leaveFromOffice();
+        worker.leaveFromOffice();
     }
 
+    @Test
+    public void workerDrinkCoffeeTest() {
+        int initialOperability = worker.getOperability();
+        worker.drinkCoffee();
+        assertTrue(worker.getOperability() > initialOperability);
+    }
 }

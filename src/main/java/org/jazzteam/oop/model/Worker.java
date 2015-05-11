@@ -25,7 +25,7 @@ public class Worker extends Human {
         }
     }
 
-    public void drinkCoffe() {
+    public void drinkCoffee() {
         operability++;
     }
 
