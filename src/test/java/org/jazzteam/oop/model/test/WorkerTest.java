@@ -3,26 +3,46 @@ package org.jazzteam.oop.model.test;
 import org.jazzteam.oop.model.Office;
 import org.jazzteam.oop.model.Worker;
 import org.jazzteam.oop.model.factory.Factory;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class WorkerTest {
 
-    @Before
-    public void cleanUp() {
+    private Office defaultOffice;
+    private Worker defaultWorker;
 
+    @BeforeMethod
+    public void precondition() {
+        defaultOffice = Factory.createNewOffice();
+        defaultWorker = Factory.createNewWorker();
     }
 
     @Test
     public void goWorkerToOfficeTest() {
-        Office office = Factory.createNewOffice();
-        int initialWorkersCount = office.getWorkers().size();
+        int initialWorkersCount = defaultOffice.getWorkers().size();
+        defaultWorker.goToOffice(defaultOffice);
 
-        Worker worker = Factory.createNewWorker();
-        worker.goToOffice(office);
+        Assert.assertEquals(defaultOffice.getWorkers().size(), initialWorkersCount + 1);
+    }
 
-        Assert.assertEquals(initialWorkersCount + 1, office.getWorkers().size());
+    @Test(expectedExceptions = IllegalStateException.class)
+    public void goWorkerToOfficeWithAlreadyExistingTest() {
+        defaultWorker.goToOffice(defaultOffice);
+        defaultWorker.goToOffice(defaultOffice);
+    }
+
+    @Test
+    public void workerLeaveFromOfficeTest() {
+        defaultWorker.goToOffice(defaultOffice);
+        defaultWorker.leaveFromOffice();
+
+        Assert.assertTrue(!defaultOffice.getWorkers().contains(defaultWorker));
+    }
+
+    @Test(expectedExceptions = IllegalStateException.class)
+    public void workerLeaveFromOfficeWithAlreadyLeavingTest() {
+        defaultWorker.leaveFromOffice();
     }
 
 }

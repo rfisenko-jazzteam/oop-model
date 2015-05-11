@@ -5,12 +5,23 @@ public class Worker extends Human {
     private int salary;
     private int cash;
     private int operability;
+    private Office office;
 
     public void goToOffice(Office office) {
         if (!office.getWorkers().contains(this)) {
             office.getWorkers().add(this);
+            this.office = office;
         } else {
-            throw new IllegalStateException(String.format("Worker already in office! Name: '%s'", this.getName()));
+            throw new IllegalStateException(String.format("Worker already in office! Worker name: '%s'", this.getName()));
+        }
+    }
+
+    public void leaveFromOffice() {
+        if (null != this.office && this.office.getWorkers().contains(this)) {
+            this.office.getWorkers().remove(this);
+            this.office = null;
+        } else {
+            throw new IllegalStateException(String.format("Worker already out of the office! Worker name: '%s'", this.getName()));
         }
     }
 
