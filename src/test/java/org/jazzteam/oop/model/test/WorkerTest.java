@@ -32,7 +32,7 @@ public class WorkerTest {
         defaultWorker.goToOffice(defaultOffice);
     }
 
-    @Test
+    @Test(dependsOnMethods = "goWorkerToOfficeTest")
     public void workerLeaveFromOfficeTest() {
         defaultWorker.goToOffice(defaultOffice);
         defaultWorker.leaveFromOffice();
