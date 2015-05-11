@@ -1,11 +1,14 @@
 package org.jazzteam.oop.model;
 
-public abstract class Worker extends Human {
+public class Worker extends Human {
 
     private int salary;
     private int cash;
     private int operability;
 
+    public void drinkCoffe() {
+        operability++;
+    }
 
     public int getOperability() {
         return operability;
