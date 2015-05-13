@@ -1,11 +1,15 @@
 package org.jazzteam.oop.model.test;
 
+import org.jazzteam.oop.model.Director;
+import org.jazzteam.oop.model.IOperabilityManager;
+import org.jazzteam.oop.model.Manager;
 import org.jazzteam.oop.model.Office;
 import org.jazzteam.oop.model.Programmer;
 import org.jazzteam.oop.model.Worker;
 import org.jazzteam.oop.model.factory.Factory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class WorkerTest extends Assert {
@@ -13,12 +17,16 @@ public class WorkerTest extends Assert {
     private Office office;
     private Worker worker;
     private Programmer programmer;
+    private Director director;
+    private Manager manager;
 
     @BeforeMethod
     public void precondition() {
         office = Factory.createNewOffice();
         worker = Factory.createNewWorker();
         programmer = Factory.createNewProgrammer();
+        manager = Factory.createNewManager();
+        director = Factory.createNewDirector();
     }
 
     @Test
@@ -65,4 +73,20 @@ public class WorkerTest extends Assert {
         programmer.setOperability(-1);
         programmer.createProgram();
     }
+
+    @DataProvider
+    public Object[][] operabilityManagerDataProvider() {
+        return new Object[][]{
+                {manager},
+                {director},
+        };
+    }
+
+    @Test(dataProvider = "operabilityManagerDataProvider")
+    public void increaseWorkerMotivationTest(IOperabilityManager operabilityManager) {
+        int initOperability = worker.getOperability();
+        operabilityManager.increaseOperability(worker);
+        assertTrue(worker.getOperability() > initOperability);
+    }
+
 }

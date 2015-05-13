@@ -1,5 +1,7 @@
 package org.jazzteam.oop.model.factory;
 
+import org.jazzteam.oop.model.Director;
+import org.jazzteam.oop.model.Manager;
 import org.jazzteam.oop.model.Office;
 import org.jazzteam.oop.model.Programmer;
 import org.jazzteam.oop.model.Worker;
@@ -19,5 +21,15 @@ public class Factory {
         Programmer programmer = new Programmer();
         programmer.setOperability(1);
         return programmer;
+    }
+
+    public static Manager createNewManager() {
+        Manager manager = new Manager();
+        return manager;
+    }
+
+    public static Director createNewDirector() {
+        Director director = new Director();
+        return director;
     }
 }
