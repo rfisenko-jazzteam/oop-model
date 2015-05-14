@@ -1,5 +1,6 @@
 package org.jazzteam.oop.model.factory;
 
+import org.jazzteam.oop.model.Accountant;
 import org.jazzteam.oop.model.Director;
 import org.jazzteam.oop.model.Manager;
 import org.jazzteam.oop.model.Office;
@@ -31,5 +32,10 @@ public class Factory {
     public static Director createNewDirector() {
         Director director = new Director();
         return director;
+    }
+
+    public static Accountant createNewAccountant() {
+        Accountant accountant = new Accountant();
+        return accountant;
     }
 }

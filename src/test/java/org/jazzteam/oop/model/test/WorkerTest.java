@@ -1,5 +1,6 @@
 package org.jazzteam.oop.model.test;
 
+import org.jazzteam.oop.model.Accountant;
 import org.jazzteam.oop.model.Director;
 import org.jazzteam.oop.model.IOperabilityManager;
 import org.jazzteam.oop.model.Manager;
@@ -19,6 +20,7 @@ public class WorkerTest extends Assert {
     private Programmer programmer;
     private Director director;
     private Manager manager;
+    private Accountant accountant;
 
     @BeforeMethod
     public void precondition() {
@@ -27,6 +29,7 @@ public class WorkerTest extends Assert {
         programmer = Factory.createNewProgrammer();
         manager = Factory.createNewManager();
         director = Factory.createNewDirector();
+        accountant = Factory.createNewAccountant();
     }
 
     @Test
@@ -87,6 +90,13 @@ public class WorkerTest extends Assert {
         int initOperability = worker.getOperability();
         operabilityManager.increaseOperability(worker);
         assertTrue(worker.getOperability() > initOperability);
+    }
+
+    @Test
+    public void workerGetSalaryTest() {
+        int initCash = worker.getCash();
+        accountant.takeSalary(worker);
+        assertEquals(worker.getCash(), initCash + worker.getSalary());
     }
 
 }
