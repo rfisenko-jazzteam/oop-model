@@ -13,7 +13,12 @@ public class Factory {
     }
 
     public static Worker createNewWorker() {
-        Worker worker = new Worker();
+        Worker worker = new Worker() {
+            @Override
+            public void relax() {
+                throw new IllegalStateException("This object used only for test and not implemented this method");
+            }
+        };
         worker.setOperability(0);
         return worker;
     }

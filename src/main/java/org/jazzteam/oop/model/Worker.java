@@ -1,11 +1,13 @@
 package org.jazzteam.oop.model;
 
-public class Worker extends Human {
+public abstract class Worker extends Human {
 
     private int salary;
     private int cash;
     private int operability;
     private Office office;
+
+    public abstract void relax();
 
     public void goToOffice(Office office) {
         if (!office.getWorkers().contains(this)) {
@@ -26,7 +28,11 @@ public class Worker extends Human {
     }
 
     public void drinkCoffee() {
-        operability++;
+        increaseOperability(1);
+    }
+
+    public void increaseOperability(int count) {
+        operability = operability + count;
     }
 
     public int getOperability() {

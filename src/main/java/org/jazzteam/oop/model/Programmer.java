@@ -19,4 +19,9 @@ public class Programmer extends Worker implements IProgrammer {
     public int getMinimumOperabilityForCreatingProgram() {
         return minimumOperabilityForCreatingProgram;
     }
+
+    @Override
+    public void relax() {
+        increaseOperability(2);
+    }
 }

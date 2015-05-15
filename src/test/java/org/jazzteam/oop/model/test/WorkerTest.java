@@ -88,7 +88,7 @@ public class WorkerTest extends Assert {
     @Test(dataProvider = "operabilityManagerDataProvider")
     public void increaseWorkerMotivationTest(IOperabilityManager operabilityManager) {
         int initOperability = worker.getOperability();
-        operabilityManager.increaseOperability(worker);
+        operabilityManager.increaseWorkerOperability(worker);
         assertTrue(worker.getOperability() > initOperability);
     }
 
