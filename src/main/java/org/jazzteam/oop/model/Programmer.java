@@ -2,6 +2,7 @@ package org.jazzteam.oop.model;
 
 public class Programmer extends Worker implements IProgrammer {
 
+    public static final int PROGRAMMER_RELAX_COUNT = 2;
     private int minimumOperabilityForCreatingProgram = 0;
 
     public Program createProgram() {
@@ -20,8 +21,16 @@ public class Programmer extends Worker implements IProgrammer {
         return minimumOperabilityForCreatingProgram;
     }
 
+    public int getRelaxEfficiency() {
+        return PROGRAMMER_RELAX_COUNT;
+    }
+
     @Override
     public void relax() {
-        increaseOperability(2);
+        if (this.getOperability() < minimumOperabilityForCreatingProgram) {
+            this.setOperability(minimumOperabilityForCreatingProgram);
+        } else {
+            super.relax();
+        }
     }
 }

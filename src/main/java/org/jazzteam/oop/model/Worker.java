@@ -1,13 +1,15 @@
 package org.jazzteam.oop.model;
 
-public abstract class Worker extends Human {
+public abstract class Worker extends Human implements Relaxer {
 
     private int salary;
     private int cash;
     private int operability;
     private Office office;
 
-    public abstract void relax();
+    public void relax() {
+        increaseOperability(getRelaxEfficiency());
+    }
 
     public void goToOffice(Office office) {
         if (!office.getWorkers().contains(this)) {
