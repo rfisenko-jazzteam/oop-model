@@ -18,6 +18,10 @@ public class Factory {
             public void relax() {
                 throw new IllegalStateException("This object used only for test and not implemented this method");
             }
+
+            public int getRelaxEfficiency() {
+                throw new IllegalStateException("This object used only for test and not implemented this method");
+            }
         };
         worker.setOperability(0);
         return worker;
