@@ -11,12 +11,20 @@ public class Company {
 
     private Office office;
 
+    private Director director;
+
     private Company() {
         office = new Office();
     }
 
     public static synchronized Company getInstance() {
         return instance;
+    }
+
+    public void conductCorporateHoliday() {
+        for (Worker worker : workers) {
+            director.increaseWorkerOperability(worker);
+        }
     }
 
     public Office getOffice() {
