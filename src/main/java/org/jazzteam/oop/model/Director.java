@@ -4,7 +4,7 @@ public class Director extends Worker implements IOperabilityManager {
 
     private Company company;
 
-    private static final int DIRECTOR_OPERABILITY_INCREASE_SIZE = 3;
+    private static final int  DIRECTOR_OPERABILITY_INCREASE_SIZE = 3;
     public static final int DIRECTOR_RELAX_COUNT = 1;
 
     public void increaseWorkerOperability(Worker worker) {
