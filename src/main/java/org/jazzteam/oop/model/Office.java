@@ -11,4 +11,12 @@ public class Office {
     public Set<Worker> getWorkers() {
         return workers;
     }
+
+    public void leaveAllWorkers() {
+        for (Worker worker : this.getWorkers()) {
+            if (this.getWorkers().contains(worker)) {
+                worker.leaveFromOffice();
+            }
+        }
+    }
 }
