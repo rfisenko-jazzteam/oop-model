@@ -1,6 +1,9 @@
 package org.jazzteam.oop.model;
 
-public class Programmer extends Worker implements IProgrammer {
+import org.jazzteam.oop.model.statistic.Analyzable;
+import org.jazzteam.oop.model.statistic.Statistic;
+
+public class Programmer extends Worker implements IProgrammer, Analyzable {
 
     public static final int PROGRAMMER_RELAX_COUNT = 2;
     private int minimumOperabilityForCreatingProgram = 0;
@@ -32,5 +35,9 @@ public class Programmer extends Worker implements IProgrammer {
         } else {
             super.relax();
         }
+    }
+
+    public Statistic analyse() {
+        return null;       //TODO [rfisenko 20.05.15]: release this method
     }
 }
