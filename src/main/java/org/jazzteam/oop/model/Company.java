@@ -39,4 +39,11 @@ public class Company {
         return workers;
     }
 
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
+    }
 }
